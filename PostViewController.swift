@@ -13,6 +13,7 @@ class PostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // 受け取った画像をImageViewに設定する
         imageView.image = image
     }

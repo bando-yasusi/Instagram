@@ -6,6 +6,7 @@ class ImageSelectViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     @IBAction func handleLibraryButton(_ sender: Any) {
         // ライブラリ（カメラロール）を指定してピッカーを開く
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
@@ -15,6 +16,7 @@ class ImageSelectViewController: UIViewController, UIImagePickerControllerDelega
             self.present(pickerController, animated: true, completion: nil)
         }
     }
+    
     @IBAction func handleCameraButton(_ sender: Any) {
         // カメラを指定してピッカーを開く
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -24,6 +26,7 @@ class ImageSelectViewController: UIViewController, UIImagePickerControllerDelega
             self.present(pickerController, animated: true, completion: nil)
         }
     }
+    
     @IBAction func handleCancelButton(_ sender: Any) {
         // 画面を閉じる
         self.dismiss(animated: true, completion: nil)
@@ -37,7 +40,6 @@ class ImageSelectViewController: UIViewController, UIImagePickerControllerDelega
         if info[.originalImage] != nil {
             // 撮影/選択された画像を取得する
             let image = info[.originalImage] as! UIImage
-            // ここから
             // ZLImageEditorライブラリで画像を加工する
             print("DEBUG_PRINT: image = \(image)")
             // ZLImageEditorで使用する画像加工ツールをセットする
@@ -51,7 +53,6 @@ class ImageSelectViewController: UIViewController, UIImagePickerControllerDelega
                 postViewController.image = image
                 self.present(postViewController, animated: true, completion: nil)
             }
-            // ここまで変更
         }
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
