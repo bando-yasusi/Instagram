@@ -87,7 +87,7 @@
             <connections>
                 <outlet property="captionLabel" destination="Kwf-Id-NaF" id="QH6-LX-jWq"/>
                 <outlet property="dateLabel" destination="XHF-M8-oTg" id="wKk-NL-bPW"/>
-                <outlet property="komento" destination="8qT-xe-BVr" id="fTa-wU-dJl"/>
+                <outlet property="koment" destination="8qT-xe-BVr" id="Vu5-Ls-1eo"/>
                 <outlet property="likeButton" destination="c4D-wx-pTa" id="llK-CZ-iOM"/>
                 <outlet property="likeLabel" destination="8tV-08-ORU" id="l7P-Rj-AOs"/>
                 <outlet property="nameLabel" destination="Qho-hN-7Ln" id="605-dN-3cg"/>

@@ -9,6 +9,11 @@ class PostData: NSObject {
     var date = ""
     var likes: [String] = []
     var isLiked: Bool = false
+    //課題コメント追加
+    var komento: [String] = []
+    //課題コメント入力者名追加
+    var nameLabel: [String] = []
+    
 
     init(document: QueryDocumentSnapshot) {
         self.id = document.documentID
@@ -40,8 +45,29 @@ class PostData: NSObject {
                 self.isLiked = true
             }
         }
+        //課題Firestoreからkomentoを配列で取得
+        if let komentoArray = postDic["komento"] as? [String] {
+                    self.komento = komentoArray
+                }
+        //課題FirestoreからnameLabelを配列で取得
+        if let nameLabelArray = postDic["nameLabel"] as? [String] {
+                    self.nameLabel = nameLabelArray
+                }
     }
 
+    // 課題　新規投稿用
+        init(name: String, caption: String) {
+            self.name = name
+            self.caption = caption
+            self.komento = []      // 空配列で初期化
+            self.nameLabel = []    // 空配列で初期化
+        }
+
+    // 課題コメント追加メソッド
+        func addComment(comment: String, by userName: String) {
+            komento.append(comment)
+            nameLabel.append(userName)
+        }
     override var description: String {
         return "PostData: name=\(name); caption=\(caption); date=\(date); likes=\(likes.count); id=\(id);"
     }

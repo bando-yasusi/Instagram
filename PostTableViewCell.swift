@@ -8,7 +8,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
-    @IBOutlet weak var komento: UITextField!
+    @IBOutlet weak var koment: UITextField!
     @IBOutlet weak var nameLabel: UILabel!
     
     
@@ -37,6 +37,12 @@ class PostTableViewCell: UITableViewCell {
                 let buttonImage = UIImage(named: "like_none")
                 self.likeButton.setImage(buttonImage, for: .normal)
             }
+            // 課題ユーザー名を表示
+                nameLabel.text = postData.name
+
+            // 課題コメントリストを表示
+            let commentLines = zip(postData.nameLabel, postData.komento).map { "\($0): \($1)" }
+            komento.text = commentLines.joined(separator: "\n")
         }
     }
    
