@@ -54,31 +54,32 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
         // 課題コメントリストを表示
         let commentLines = zip(postData.nameLabel, postData.komento).map { "\($0): \($1)" }
         komento.text = commentLines.joined(separator: "\n")
-        
-        // 編集が終わったときに呼ばれる
-        func textViewDidEndEditing(_ textView: UITextView) {
-            let newComment = textView.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-            if !newComment.isEmpty {
-                updateComment(newComment: newComment)
-            }
+    }
+    
+    // 編集が終わったときに呼ばれる
+    func textViewDidEndEditing(_ textView: UITextView) {
+        let newComment = textView.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        if !newComment.isEmpty {
+            updateComment(newComment: newComment)
         }
-        
-        // Firestore にコメントを追加
-        func updateComment(newComment: String) {
-            let postId = postData.id
-            let postRef = Firestore.firestore().collection("posts").document(postId)
-            let currentUserName = Auth.auth().currentUser?.displayName ?? "名無し"
-            postRef.updateData([
-                "komento": FieldValue.arrayUnion([newComment]),
-                "nameLabel": FieldValue.arrayUnion([currentUserName])
-            ]) { error in
-                if let error = error {
-                    print("コメント追加に失敗: \(error)")
-                } else {
-                    print("コメント追加成功 🎉")
-                }
+    }
+    
+    
+    // Firestore にコメントを追加
+    func updateComment(newComment: String) {
+        let postId = postData.id
+        let postRef = Firestore.firestore().collection("posts").document(postId)
+        let currentUserName = Auth.auth().currentUser?.displayName ?? "名無し"
+        postRef.updateData([
+            "komento": FieldValue.arrayUnion([newComment]),
+            "nameLabel": FieldValue.arrayUnion([currentUserName])
+        ]) { error in
+            if let error = error {
+                print("コメント追加に失敗: \(error)")
+            } else {
+                print("コメント追加成功")
             }
         }
     }
-}
     
+}
