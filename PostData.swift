@@ -47,7 +47,7 @@ class PostData: NSObject {
         if let komentoArray = postDic["komento"] as? [String] {
             self.komento = komentoArray
         }
-       
+        
     }
     
     // 課題　新規投稿用

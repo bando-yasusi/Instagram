@@ -11,7 +11,7 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var komento: UITextView!
-
+    
     
     @IBOutlet weak var commentButton: UIButton!
     var postData: PostData!
