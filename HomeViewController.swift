@@ -65,6 +65,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // セル内のボタンのアクションをソースコードで設定する
         cell.likeButton.addTarget(self, action:#selector(handleLikeButton(_:)), for: .touchUpInside)
+        // 課題コメントボタンのアクション
+        cell.commentButton.addTarget(self, action: #selector(handleCommentButton(_:)), for: .touchUpInside)
         
         
         
@@ -97,9 +99,49 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             postRef.updateData(["likes": updateValue])
         }
     }
+    //課題ボタンが押されたらコメント入力画面を出す
+    @objc func handleCommentButton(_ sender: UIButton) {
+        let point = sender.convert(CGPoint.zero, to: tableView)
+        guard let indexPath = tableView.indexPathForRow(at: point) else { return }
+        
+        let postData = postArray[indexPath.row]
+        
+        let alert = UIAlertController(title: "コメントを入力", message: nil, preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "コメントを入力してください"
+        }
+        
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "投稿", style: .default, handler: { _ in
+            guard let comment = alert.textFields?.first?.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                  !comment.isEmpty else {
+                print("空のコメントは投稿されません")
+                return
+            }
+            
+            // 名前とコメントをセットにした文字列を作る
+            let currentUserName = Auth.auth().currentUser?.displayName ?? "名無し"
+            let displayComment = "\(currentUserName): \(comment)"
+            
+            // Firestore に保存
+            let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
+            postRef.updateData([
+                "komento": FieldValue.arrayUnion([displayComment])
+            ]) { error in
+                if let error = error {
+                    print("コメントの保存に失敗: \(error)")
+                } else {
+                    print("コメントの保存に成功")
+                    
+                    // コメント表示を即更新したい場合
+                    DispatchQueue.main.async {
+                        self.viewWillAppear(true)
+                    }
+                }
+            }
+        }))
+        
+        present(alert, animated: true, completion: nil)
+    }
 }
-
-
-
-
-

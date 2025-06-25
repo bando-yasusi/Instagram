@@ -11,8 +11,9 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var komento: UITextView!
-    @IBOutlet weak var nameLabel: UILabel!
+
     
+    @IBOutlet weak var commentButton: UIButton!
     var postData: PostData!
     // データをセット
     func setPostData(_ postData: PostData) {
@@ -46,14 +47,8 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
             let buttonImage = UIImage(named: "like_none")
             self.likeButton.setImage(buttonImage, for: .normal)
         }
-        
-        
-        // 課題ユーザー名を表示
-        nameLabel.text = postData.name
-        
         // 課題コメントリストを表示
-        let commentLines = zip(postData.nameLabel, postData.komento).map { "\($0): \($1)" }
-        komento.text = commentLines.joined(separator: "\n")
+        komento.text = postData.komento.joined(separator: "\n")
     }
     
     // 編集が終わったときに呼ばれる
@@ -70,9 +65,9 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
         let postId = postData.id
         let postRef = Firestore.firestore().collection("posts").document(postId)
         let currentUserName = Auth.auth().currentUser?.displayName ?? "名無し"
+        let displayComment = "\(currentUserName): \(newComment)"
         postRef.updateData([
-            "komento": FieldValue.arrayUnion([newComment]),
-            "nameLabel": FieldValue.arrayUnion([currentUserName])
+            "komento": FieldValue.arrayUnion([displayComment])
         ]) { error in
             if let error = error {
                 print("コメント追加に失敗: \(error)")

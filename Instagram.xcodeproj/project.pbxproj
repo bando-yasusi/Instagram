@@ -18,6 +18,7 @@
 		7EB645342E06A5430001A245 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB645332E06A5430001A245 /* PostViewController.swift */; };
 		7EB645362E06A5600001A245 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB645352E06A5600001A245 /* SettingViewController.swift */; };
 		7EB645382E06AA270001A245 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB645372E06AA270001A245 /* TabBarController.swift */; };
+		7EDA62022E0B850700274E91 /* CommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDA62012E0B850700274E91 /* CommentData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		7EB645332E06A5430001A245 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		7EB645352E06A5600001A245 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		7EB645372E06AA270001A245 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		7EDA62012E0B850700274E91 /* CommentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentData.swift; sourceTree = "<group>"; };
 		8FEA2E643BE7014805F38329 /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 		B4CD589D3ECA0A5B8C862428 /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -82,6 +84,7 @@
 		7EB6450C2E06A3860001A245 = {
 			isa = PBXGroup;
 			children = (
+				7EDA62012E0B850700274E91 /* CommentData.swift */,
 				7E0567BA2E08FF14002A2496 /* PostTableViewCell.swift */,
 				7E0567BB2E08FF14002A2496 /* PostTableViewCell.xib */,
 				7E0567B82E08FD20002A2496 /* PostData.swift */,
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E0567BC2E08FF14002A2496 /* PostTableViewCell.swift in Sources */,
+				7EDA62022E0B850700274E91 /* CommentData.swift in Sources */,
 				7EB645322E06A5220001A245 /* ImageSelectViewController.swift in Sources */,
 				7EB645382E06AA270001A245 /* TabBarController.swift in Sources */,
 				7EB645302E06A4FB0001A245 /* HomeViewController.swift in Sources */,
