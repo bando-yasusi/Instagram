@@ -3,26 +3,19 @@ import FirebaseStorageUI
 import FirebaseFirestore
 import FirebaseAuth
 
-class PostTableViewCell: UITableViewCell, UITextViewDelegate {
+class PostTableViewCell: UITableViewCell {
     
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
-    @IBOutlet weak var komento: UITextView!
-    
-    
+    @IBOutlet weak var komento: UILabel!
     @IBOutlet weak var commentButton: UIButton!
     var postData: PostData!
     // データをセット
     func setPostData(_ postData: PostData) {
         self.postData = postData
-        //課題デリゲートセット
-        komento.delegate = self
-        komento.isEditable = true
-        komento.isSelectable = true
-        komento.isUserInteractionEnabled = true
         
         // 画像の表示
         postImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
@@ -47,16 +40,9 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
             let buttonImage = UIImage(named: "like_none")
             self.likeButton.setImage(buttonImage, for: .normal)
         }
-        // 課題コメントリストを表示
+        // 追加　課題コメントリストを表示（名前 + コメント内容）
         komento.text = postData.komento.joined(separator: "\n")
-    }
-    
-    // 編集が終わったときに呼ばれる
-    func textViewDidEndEditing(_ textView: UITextView) {
-        let newComment = textView.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        if !newComment.isEmpty {
-            updateComment(newComment: newComment)
-        }
+
     }
     
     
