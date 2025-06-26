@@ -133,11 +133,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     print("コメントの保存に失敗: \(error)")
                 } else {
                     print("コメントの保存に成功")
-                    
-                    // コメント表示を即更新したい場合
-                    DispatchQueue.main.async {
-                        self.viewWillAppear(true)
-                    }
                 }
             }
         }))
